@@ -1,3 +1,14 @@
-include:
-  - ./core/docker-compose.yml
-  - ./media/docker-compose.yml
+services:
+  nginxpm:
+    extends:
+      file: ./core/docker-compose.yml
+      service: nginxpm
+
+  plex:
+    extends:
+      file: ./media/docker-compose.yml
+      service: plex
+
+networks:
+  proxy_net:
+    name: proxy_net
