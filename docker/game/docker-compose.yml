@@ -1,0 +1,29 @@
+services:
+  crafty:
+    image: registry.gitlab.com/crafty-controller/crafty-4:latest
+    container_name: nginxpm
+    restart: unless-stopped
+
+    ports:
+      - 8443:8443
+#     - 8123:8123 optional for something called dynmap <- idk what this is??
+      - 19132:19132  # This is for bedrock servers
+      - 25500-25600:25500-25600
+    
+    environment:
+      - TZ=Europe/London
+    
+    volumes:
+      - /mnt/ssd2/appdata/crafty/backups:/crafty/backups
+      - /mnt/ssd2/appdata/crafty/logs:/crafty/logs
+      - /mnt/ssd2/appdata/crafty/servers:/crafty/servers
+      - /mnt/ssd2/appdata/crafty/config:/crafty/app/config
+      - /mnt/ssd2/appdata/crafty/import:/crafty/import
+
+    networks:
+      - proxy_net
+
+networks:
+  proxy_net:
+    external: true
+  
