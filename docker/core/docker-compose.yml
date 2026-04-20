@@ -16,6 +16,24 @@ services:
     networks:
       - proxy_net
 
+  pihole:
+    image: pihole/pihole:latest
+    container_name: pihole
+    hostname: pihole
+
+    environment:
+      - TZ=Europe/London
+      - WEBPASSWORD=changeme
+      - DNSMASQ_LISTENING=all
+
+    volumes:
+      - /mnt/ssd2/appdata/pihole/etc-pihole:/etc/pihole
+      - /mnt/ssd2/appdata/pihole/etc-dnsmasq.d:/etc/dnsmasq.d
+
+    network_mode: host
+
+    restart: unless-stopped
+
 networks:
   proxy_net:
     external: true
