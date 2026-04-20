@@ -9,9 +9,16 @@ services:
       - TZ=Europe/London
       - VERSION=docker
 
+    ports:
+      - 32400:32400
+
     volumes:
       - /mnt/ssd2/appdata/plex:/config
       - /mnt/ssd2/media:/media
+    
+    dns:
+      - 1.1.1.1
+      - 8.8.8.8
 
     networks:
       - proxy_net
