@@ -13,6 +13,10 @@ services:
       - /mnt/ssd2/appdata/nginxpm:/data
       - /mnt/ssd2/appdata/nginxpm/letsencrypt:/etc/letsencrypt
 
+    dns:
+      - 8.8.8.8
+      - 1.1.1.1
+
     networks:
       - proxy_net
 
