@@ -5,8 +5,7 @@ services:
     restart: unless-stopped
 
     volumes:
-      - /mnt/ssd2:/ssd2
-      - /mnt/ssd2/appdata/filebrowser/srv:/srv
+      - /mnt/ssd2:/srv
       - /mnt/ssd2/appdata/filebrowser/database:/database
       - /mnt/ssd2/appdata/filebrowser/config:/config
 
