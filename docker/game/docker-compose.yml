@@ -20,6 +20,10 @@ services:
       - /mnt/ssd2/appdata/crafty/config:/crafty/app/config
       - /mnt/ssd2/appdata/crafty/import:/crafty/import
 
+    dns:
+      - 1.1.1.1
+      - 8.8.8.8
+
     networks:
       - proxy_net
 
