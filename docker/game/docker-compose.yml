@@ -1,7 +1,7 @@
 services:
   crafty:
     image: registry.gitlab.com/crafty-controller/crafty-4:latest
-    container_name: nginxpm
+    container_name: crafty
     restart: unless-stopped
 
     ports:
