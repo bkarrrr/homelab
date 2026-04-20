@@ -9,6 +9,11 @@ services:
       file: ./media/docker-compose.yml
       service: plex
 
+  pihole:
+    extends:
+      file: ./core/docker-compose.yml
+      service: pihole
+
 networks:
   proxy_net:
     name: proxy_net
