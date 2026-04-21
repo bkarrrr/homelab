@@ -16,6 +16,13 @@ services:
       - /mnt/ssd2/appdata/plex:/config
       - /mnt/ssd2/media:/media
 
+    devices:
+      - /dev/dri/renderD128:/dev/dri/renderD128
+
+    group_add:
+      - render
+      - video
+
     dns:
       - 1.1.1.1
       - 8.8.8.8
