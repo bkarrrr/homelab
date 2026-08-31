@@ -12,6 +12,28 @@ services:
     networks:
       - proxy_net
 
+  csv-converter-go:
+    image: bkarowna/csv-converter-go:latest
+    container_name: csv-converter-go
+    restart: unless-stopped
+
+    ports:
+      - "8088:8088"
+
+    networks:
+      - proxy_net
+
+  csv-converter-python:
+    image: bkarowna/csv-converter-python:latest
+    container_name: csv-converter-python
+    restart: unless-stopped
+
+    ports:
+      - "8090:8090"
+
+    networks:
+      - proxy_net
+
 networks:
   proxy_net:
     external: true
