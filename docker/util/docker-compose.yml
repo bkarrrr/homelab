@@ -24,7 +24,7 @@ services:
       - proxy_net
 
   csv-converter-python:
-    image: bkarowna/csv-converter-python:1.0.0
+    image: bkarowna/csv-converter-python:1.1.0
     container_name: csv-converter-python
     restart: unless-stopped
 
