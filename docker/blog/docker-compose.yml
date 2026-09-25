@@ -1,0 +1,57 @@
+services:
+  ghost:
+    image: ghost:6
+    container_name: ghost
+
+    environment:
+      - url=${GHOST_URL}
+      - database__client=mysql
+      - database__connection__host=db
+      - database__connection__user=${MYSQL_USER}
+      - database__connection__password=${MYSQL_PASSWORD}
+      - database__connection__database=${MYSQL_DATABASE}
+
+    volumes:
+      - /mnt/ssd2/appdata/ghost/content:/var/lib/ghost/content
+
+    networks:
+      - proxy_net
+
+    restart: unless-stopped
+
+    depends_on:
+      db:
+        condition: service_healthy
+
+  db:
+    image: mysql:8
+    container_name: ghost-db
+
+    environment:
+      - MYSQL_DATABASE=${MYSQL_DATABASE}
+      - MYSQL_USER=${MYSQL_USER}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+
+    volumes:
+      - /mnt/ssd2/appdata/ghost/mysql:/var/lib/mysql
+
+    networks:
+      - proxy_net
+
+    restart: unless-stopped
+
+    healthcheck:
+      test:
+        - CMD
+        - mysqladmin
+        - ping
+        - -h
+        - localhost
+      interval: 10s
+      timeout: 5s
+      retries: 10
+
+networks:
+  proxy_net:
+    external: true
