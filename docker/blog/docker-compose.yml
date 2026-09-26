@@ -10,6 +10,7 @@ services:
       - database__connection__user=${MYSQL_USER}
       - database__connection__password=${MYSQL_PASSWORD}
       - database__connection__database=${MYSQL_DATABASE}
+      - 'security__staffDeviceVerification=false'
 
     volumes:
       - /mnt/ssd2/appdata/ghost/content:/var/lib/ghost/content
